@@ -100,7 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetDestination: {fileID: 0}
-  speed: 1
+  speed: 3
+  experiencePrefab: {fileID: 7413321776173865529, guid: 8d07b6178dac0c540aa3bfbcd044f5e2, type: 3}
+  experienceAmount: 0
   hp: 10
   damage: 1
 --- !u!50 &6153718588496865145

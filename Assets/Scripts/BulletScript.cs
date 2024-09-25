@@ -9,8 +9,13 @@ public class BulletScript : MonoBehaviour
     private Rigidbody2D rb;
     public float force;
     public float lifeTime = 5f; // Tiempo antes de que la bala desaparezca
-    public int bulletDamage = 10; // Daño que hace la bala
     public float explosionRadius = 1f; // Radio de la explosión para aplicar daño
+
+    // Daño que hereda del personaje que dispara
+    public int bulletDamage = 10;
+
+    // Referencia al personaje
+    private Character character;
 
     void Start()
     {
@@ -29,6 +34,13 @@ public class BulletScript : MonoBehaviour
 
         // Destruir la bala después de `lifeTime` segundos si no colisiona con nada
         Destroy(gameObject, lifeTime);
+    }
+
+    // Método para asignar el daño desde el Character
+    public void SetCharacter(Character character)
+    {
+        this.character = character;
+        this.bulletDamage = character.currentHp; // O algún otro valor, si tienes un atributo de daño específico
     }
 
     void OnCollisionEnter2D(Collision2D collision)

@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 5
   lifeTime: 3
+  explosionRadius: 1
   bulletDamage: 10
 --- !u!50 &-8477129849158333927
 Rigidbody2D:

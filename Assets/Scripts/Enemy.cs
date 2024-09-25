@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour, IDamageable
     Character targetCharacter;
     [SerializeField] float speed;
 
+    public GameObject experiencePrefab;
+    public int experienceAmount;
+
     private Rigidbody2D rgbd2d;
 
     [SerializeField] public int hp = 999;
@@ -62,6 +65,7 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             Debug.Log("Enemy died.");
             Destroy(gameObject);
+            DropExperience();
         }
     }
 
@@ -71,5 +75,10 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         targetDestination = target;
         targetGameobject = target.gameObject;
+    }
+
+    void DropExperience()
+    {
+        Instantiate(experiencePrefab, transform.position, Quaternion.identity);
     }
 }

@@ -6,6 +6,7 @@ public class ThrowingKnifeProjectile : MonoBehaviour
 {
     Vector3 direction;
     [SerializeField] float speed;
+    [SerializeField] int damage;
 
 
     public void SetDirection(float dir_x, float dir_y)
@@ -19,9 +20,27 @@ public class ThrowingKnifeProjectile : MonoBehaviour
             transform.localScale = scale;
         }
     }
-     void Update()
+
+    bool hitDetected = false;
+
+    void Update()
     {
         transform.position += direction * speed * Time.deltaTime;
-        Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, 0.3f);
+        Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, 0.7f);
+        foreach (Collider2D c in hit)
+        {
+            Enemy enemy = c.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+                break;
+            }
+
+        }
+        if (hitDetected == true)
+        {
+            Destroy(gameObject);
+        }
+        
     }
 }

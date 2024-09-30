@@ -461,8 +461,10 @@ MonoBehaviour:
   - {fileID: 432238292}
   - {fileID: 382885877}
   spawnInterval: 5
+  waveInterval: 5
+  enemiesPerWave: 10
   maxEnemiesPerSpawn: 10
-  totalEnemiesAllowed: 20
+  totalWaves: 5
 --- !u!114 &431283845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33396,7 +33398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9116923722726703840, guid: 3cda5421a53e22044977089c427e364c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 48.9
+      value: 48.4
       objectReference: {fileID: 0}
     - target: {fileID: 9116923722726703840, guid: 3cda5421a53e22044977089c427e364c, type: 3}
       propertyPath: m_LocalPosition.z

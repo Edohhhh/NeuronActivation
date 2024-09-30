@@ -15,7 +15,10 @@ public class Enemy : MonoBehaviour, IDamageable
     private Rigidbody2D rgbd2d;
 
     [SerializeField] public int hp = 999;
-    [SerializeField] int damage = 1;
+    [SerializeField] int damage = 10;
+
+    // Agregamos una referencia al EnemySpawner
+    private EnemySpawner enemySpawner;
 
     private void Awake()
     {
@@ -24,6 +27,12 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             targetGameobject = targetDestination.gameObject;
         }
+    }
+
+    private void Start()
+    {
+        // Encontramos el EnemySpawner en la escena
+        enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 
     private void FixedUpdate()
@@ -64,11 +73,15 @@ public class Enemy : MonoBehaviour, IDamageable
         if (hp <= 0)
         {
             Debug.Log("Enemy died.");
+            // Notificamos al EnemySpawner cuando el enemigo muere
+            if (enemySpawner != null)
+            {
+                enemySpawner.EnemyDied(this); // Aquí es donde notificamos al spawner
+            }
             Destroy(gameObject);
             DropExperience();
         }
     }
-
 
     // Método para asignar el destino del enemigo
     public void SetTarget(Transform target)

@@ -1,41 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private EnemyFactory enemyFactory;
-    [SerializeField] private Transform playerTransform; // El transform del jugador que los enemigos seguirán
+    [SerializeField] private Transform playerTransform;
     [SerializeField] private List<Transform> spawnAreas;
-    public float spawnInterval = 5f;
-    public int maxEnemiesPerSpawn = 3;
-    public int totalEnemiesAllowed = 10;
-
+    [SerializeField] private float spawnInterval = 2f; // Intervalo entre spawns de enemigos dentro de una horda
+    [SerializeField] private float waveInterval = 5f; // Tiempo de descanso entre hordas
+    [SerializeField] private int enemiesPerWave = 10; // Cantidad de enemigos por horda
+    [SerializeField] private int maxEnemiesPerSpawn = 3; // Cantidad máxima de enemigos por spawn
+    [SerializeField] private int totalWaves = 5; // Total de hordas
+    private int currentWave = 0; // Contador de hordas
     private int currentEnemyCount = 0;
     private List<Enemy> activeEnemies = new List<Enemy>();
 
     private void Start()
     {
-        InvokeRepeating(nameof(SpawnEnemies), 0f, spawnInterval);
+        StartCoroutine(StartWaveSystem());
     }
 
-    private void SpawnEnemies()
+    // Corrutina que controla el sistema de hordas
+    private IEnumerator StartWaveSystem()
     {
-        if (currentEnemyCount >= totalEnemiesAllowed) return;
-
-        int enemiesToSpawn = Mathf.Min(maxEnemiesPerSpawn, totalEnemiesAllowed - currentEnemyCount);
-
-        for (int i = 0; i < enemiesToSpawn; i++)
+        while (currentWave < totalWaves)
         {
-            Enemy newEnemy = enemyFactory.CreateEnemy();
-            newEnemy.transform.position = GetRandomSpawnPosition();
+            currentWave++;
+            Debug.Log($"Iniciando Horda {currentWave}");
+            yield return StartCoroutine(SpawnEnemiesForWave());
 
-            // Configura el transform del jugador como destino para el nuevo enemigo
-            newEnemy.SetTarget(playerTransform);
-
-            activeEnemies.Add(newEnemy);
-            currentEnemyCount++;
+            // Espera después de la horda
+            Debug.Log("Esperando el siguiente descanso...");
+            yield return new WaitForSeconds(waveInterval);
         }
+
+        Debug.Log("¡Todas las hordas completadas! Victoria.");
+        ShowVictoryScreen();
+    }
+
+    // Corrutina que genera los enemigos progresivamente durante una horda
+    private IEnumerator SpawnEnemiesForWave()
+    {
+        currentEnemyCount = 0;
+        int enemiesToSpawn = enemiesPerWave;
+
+        while (enemiesToSpawn > 0)
+        {
+            int spawnCount = Mathf.Min(maxEnemiesPerSpawn, enemiesToSpawn);
+            for (int i = 0; i < spawnCount; i++)
+            {
+                Enemy newEnemy = enemyFactory.CreateEnemy();
+                newEnemy.transform.position = GetRandomSpawnPosition();
+                newEnemy.SetTarget(playerTransform);
+                activeEnemies.Add(newEnemy);
+                currentEnemyCount++;
+            }
+
+            enemiesToSpawn -= spawnCount;
+
+            yield return new WaitForSeconds(spawnInterval); // Intervalo entre spawns
+        }
+
+        // Espera a que todos los enemigos de la horda sean derrotados
+        yield return new WaitUntil(() => activeEnemies.Count == 0);
+
     }
 
     private Vector2 GetRandomSpawnPosition()
@@ -59,4 +89,16 @@ public class EnemySpawner : MonoBehaviour
             currentEnemyCount--;
         }
     }
+
+
+    private void ShowVictoryScreen()
+    {
+        // Lógica para mostrar la pantalla de victoria
+        // Podés cargar una nueva escena o mostrar un panel de victoria en la UI
+        Debug.Log("Pantalla de victoria mostrada.");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }
+
+
+

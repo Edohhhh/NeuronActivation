@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PantallaWin : MonoBehaviour
 {
-    public void irAlMenu() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+    public void irAlMenu() => SceneManager.LoadScene("MenuInicial");
 
     public void Salir()
     {

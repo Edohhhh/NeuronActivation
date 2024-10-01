@@ -35,7 +35,7 @@ public class Character : MonoBehaviour
         {
             currentHp = 0; // Evita que la vida sea negativa
             Debug.Log("Muerte");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            SceneManager.LoadScene("Lose");
             // Aquí puedes añadir más lógica, como destruir el objeto:
             // Destroy(gameObject);
         }

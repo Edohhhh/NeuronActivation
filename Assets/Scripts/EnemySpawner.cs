@@ -65,7 +65,6 @@ public class EnemySpawner : MonoBehaviour
 
         // Espera a que todos los enemigos de la horda sean derrotados
         yield return new WaitUntil(() => activeEnemies.Count == 0);
-
     }
 
     private Vector2 GetRandomSpawnPosition()
@@ -90,15 +89,29 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-
     private void ShowVictoryScreen()
     {
-        // Lógica para mostrar la pantalla de victoria
-        // Podés cargar una nueva escena o mostrar un panel de victoria en la UI
-        Debug.Log("Pantalla de victoria mostrada.");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // Obtiene el índice de la escena actual
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // Verifica el índice de la escena actual y carga la pantalla de victoria correspondiente
+        if (currentSceneIndex == 1) // Supongamos que el nivel 1 tiene el índice 1
+        {
+            Debug.Log("Pantalla de victoria para el Nivel 1.");
+            SceneManager.LoadScene("Win");
+        }
+        else if (currentSceneIndex == 2) // Supongamos que el nivel 2 tiene el índice 2
+        {
+            Debug.Log("Pantalla de victoria para el Nivel 2.");
+            SceneManager.LoadScene("Win2");
+        }
+        else
+        {
+            Debug.LogError("No se encontró una pantalla de victoria para este nivel.");
+        }
     }
 }
+
 
 
 

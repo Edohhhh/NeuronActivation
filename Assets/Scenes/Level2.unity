@@ -237,11 +237,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -11.590494, y: 49.07422}
-      - {x: -97.547165, y: 49.628006}
-      - {x: -96.87587, y: -38.879986}
-      - {x: 67.81166, y: -39.3227}
-      - {x: 67.46471, y: 49.30521}
+    - - {x: 2.1531944, y: 31.775688}
+      - {x: -1.1297779, y: 31.805593}
+      - {x: -2.603592, y: 31.790691}
+      - {x: -17.328901, y: 31.761396}
+      - {x: -51.27547, y: 31.85975}
+      - {x: -51.388935, y: -13.73987}
+      - {x: -17.205034, y: -13.817261}
+      - {x: 16.778606, y: -13.83934}
+      - {x: 16.864216, y: 31.845581}
   m_UseDelaunayMesh: 0
 --- !u!1001 &215488005
 PrefabInstance:
@@ -461,8 +465,10 @@ MonoBehaviour:
   - {fileID: 432238292}
   - {fileID: 382885877}
   spawnInterval: 5
+  waveInterval: 5
+  enemiesPerWave: 10
   maxEnemiesPerSpawn: 10
-  totalEnemiesAllowed: 20
+  totalWaves: 5
 --- !u!114 &431283845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33306,7 +33312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9116923722726703840, guid: 3cda5421a53e22044977089c427e364c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 43.541386
+      value: 43.72426
       objectReference: {fileID: 0}
     - target: {fileID: 9116923722726703840, guid: 3cda5421a53e22044977089c427e364c, type: 3}
       propertyPath: m_LocalScale.y
@@ -33314,11 +33320,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9116923722726703840, guid: 3cda5421a53e22044977089c427e364c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1
+      value: 2.0998
       objectReference: {fileID: 0}
     - target: {fileID: 9116923722726703840, guid: 3cda5421a53e22044977089c427e364c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 48.9
+      value: 48.8075
       objectReference: {fileID: 0}
     - target: {fileID: 9116923722726703840, guid: 3cda5421a53e22044977089c427e364c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -34224,11 +34230,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9116923722726703840, guid: 3cda5421a53e22044977089c427e364c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 43.541386
+      value: 43.569252
       objectReference: {fileID: 0}
     - target: {fileID: 9116923722726703840, guid: 3cda5421a53e22044977089c427e364c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -55.8
+      value: -55.786
       objectReference: {fileID: 0}
     - target: {fileID: 9116923722726703840, guid: 3cda5421a53e22044977089c427e364c, type: 3}
       propertyPath: m_LocalPosition.y

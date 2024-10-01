@@ -1,38 +1,39 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ColaEnemy : MonoBehaviour
 {
-    public GameObject[] prefabs;
-    private Queue<GameObject> prefabQueue= new Queue<GameObject>();
-    private int enemykillcount = 0;
-    public int killstoSpawnPrefabs = 3;
+    public GameObject[] prefabs;  // Los prefabs que se spawnearán en orden
+    public Transform spawnPoint;  // El punto donde spawnearán los prefabs
+    private int enemyKillCount = 0;  // Conteo de enemigos muertos
+    private int currentIndex = 0;  // Índice del prefab actual
 
-    private void Start()
-    {
-        foreach (GameObject prefab in prefabs)
-        {
-            prefabQueue.Enqueue(prefab);
-        }
-    }
+    private GameObject currentPrefab;  // Referencia al prefab actual instanciado
+
+    // Método que se llamará cada vez que se mate a un enemigo
     public void OnEnemyKilled()
     {
-        enemykillcount++;
-
-        if(enemykillcount >= killstoSpawnPrefabs && prefabQueue.Count > 0 )
+        enemyKillCount++;
+        if (enemyKillCount % 3 == 0)  // Cada 3 enemigos muertos
         {
-            SpawnPrefab();
-            enemykillcount = 0;
+            SpawnNextPrefab();
         }
-
     }
-    private void SpawnPrefab()
+
+    // Método para spawnear el siguiente prefab en la lista
+    private void SpawnNextPrefab()
     {
-        if (prefabQueue.Count > 0)
+        // Si hay un prefab activo, destrúyelo antes de spawnear el siguiente
+        if (currentPrefab != null)
         {
-            GameObject prefabToSpawn = prefabQueue.Dequeue();
-            Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+            Destroy(currentPrefab);
         }
+
+        // Spawnea el siguiente prefab exactamente en la posición del spawnPoint
+        currentPrefab = Instantiate(prefabs[currentIndex], spawnPoint.position, Quaternion.identity);
+
+        // Avanza al siguiente prefab en la lista
+        currentIndex = (currentIndex + 1) % prefabs.Length;  // Ciclo circular en la lista de prefabs
     }
 }
+

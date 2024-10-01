@@ -193,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 3902663772776560422, guid: 60229e49034b80345bdf717ee96c4fe3, type: 3}
-  - {fileID: 3902663772776560422, guid: 60229e49034b80345bdf717ee96c4fe3, type: 3}
-  - {fileID: 1573136192253487821, guid: 8b6919905c0678d4ca4cea4f74182f57, type: 3}
   - {fileID: 4585394959262233966, guid: c3bce3e1c3dcd664dae3b8fef14ed576, type: 3}
-  killstoSpawnPrefabs: 3
+  - {fileID: 3902663772776560422, guid: 60229e49034b80345bdf717ee96c4fe3, type: 3}
+  - {fileID: 4585394959262233966, guid: c3bce3e1c3dcd664dae3b8fef14ed576, type: 3}
+  spawnPoint: {fileID: 8497283148560874426, guid: 756ef8958885840459f8493268dac5bc, type: 3}

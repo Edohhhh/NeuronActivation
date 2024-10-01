@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1463237339504399419}
   - component: {fileID: 6153718588496865145}
   - component: {fileID: 3787431830391139592}
+  - component: {fileID: 2499441300271459116}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -103,6 +104,7 @@ MonoBehaviour:
   speed: 3
   experiencePrefab: {fileID: 7413321776173865529, guid: 8d07b6178dac0c540aa3bfbcd044f5e2, type: 3}
   experienceAmount: 0
+  enemyQueue: {fileID: 0}
   hp: 10
   damage: 1
 --- !u!50 &6153718588496865145
@@ -177,3 +179,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2499441300271459116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093199384672970532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1bb0208ee6a424eabb44369bb595a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 3902663772776560422, guid: 60229e49034b80345bdf717ee96c4fe3, type: 3}
+  - {fileID: 3902663772776560422, guid: 60229e49034b80345bdf717ee96c4fe3, type: 3}
+  - {fileID: 1573136192253487821, guid: 8b6919905c0678d4ca4cea4f74182f57, type: 3}
+  - {fileID: 4585394959262233966, guid: c3bce3e1c3dcd664dae3b8fef14ed576, type: 3}
+  killstoSpawnPrefabs: 3

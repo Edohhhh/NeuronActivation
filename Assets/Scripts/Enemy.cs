@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public GameObject experiencePrefab;
     public int experienceAmount;
+    public ColaEnemy enemyQueue;
 
     private Rigidbody2D rgbd2d;
 
@@ -33,6 +34,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         // Encontramos el EnemySpawner en la escena
         enemySpawner = FindObjectOfType<EnemySpawner>();
+        enemyQueue = FindAnyObjectByType<ColaEnemy>();
+        
     }
 
     private void FixedUpdate()
@@ -78,6 +81,10 @@ public class Enemy : MonoBehaviour, IDamageable
             {
                 enemySpawner.EnemyDied(this); // Aquí es donde notificamos al spawner
             }
+            if(enemyQueue != null)
+            {
+                enemyQueue.OnEnemyKilled();
+            }
             Destroy(gameObject);
             DropExperience();
         }
@@ -93,5 +100,6 @@ public class Enemy : MonoBehaviour, IDamageable
     void DropExperience()
     {
         Instantiate(experiencePrefab, transform.position, Quaternion.identity);
+        
     }
 }

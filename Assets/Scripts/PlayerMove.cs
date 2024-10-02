@@ -7,11 +7,7 @@ public class PlayerMove : MonoBehaviour
     public Vector3 movementVector;
 
     public float lastHorizontalVector;
-
     public float lastVerticalVector;
-
-
-    [SerializeField] private float speed = 3f;
 
     private void Awake()
     {
@@ -24,23 +20,26 @@ public class PlayerMove : MonoBehaviour
         movementVector.x = Input.GetAxisRaw("Horizontal");
         movementVector.y = Input.GetAxisRaw("Vertical");
 
-        if(movementVector.x != 0)
+        if (movementVector.x != 0)
         {
             lastHorizontalVector = movementVector.x;
         }
-        if(movementVector.y != 0) 
+        if (movementVector.y != 0)
         {
-            lastVerticalVector = movementVector.y; 
+            lastVerticalVector = movementVector.y;
         }
 
+        // Obtener la velocidad desde InitialPlayerStats
+        float speed = InitialPlayerStats.instance.speed;
 
-        movementVector.Normalize(); // Normalizamos para evitar velocidades extrañas en diagonales
+        movementVector.Normalize();
         movementVector *= speed;
         rgbd2d.velocity = movementVector;
     }
 
     private void FixedUpdate()
     {
-        rgbd2d.velocity = movementVector * speed;
+        // Actualizar la velocidad usando InitialPlayerStats
+        rgbd2d.velocity = movementVector * InitialPlayerStats.instance.speed;
     }
 }

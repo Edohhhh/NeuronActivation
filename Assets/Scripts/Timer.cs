@@ -35,16 +35,16 @@ public class Timer : MonoBehaviour
     {
         currentTime = countDown ? currentTime -= Time.deltaTime : currentTime += Time.deltaTime;
 
-        //if (hasLimit && ((countDown && currentTime <= timerLimit) || (!countDown && currentTime >= timerLimit)))
-        //{
-        //    currentTime = timerLimit;
-        //    SetTimerText();
-        //    timerText.color = Color.red;
-        //    enabled = false;
-        //    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //}
+        if (hasLimit && ((countDown && currentTime <= timerLimit) || (!countDown && currentTime >= timerLimit)))
+        {
+            currentTime = timerLimit;
+            SetTimerText();
+            timerText.color = Color.red;
+            enabled = false;
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
 
-        //SetTimerText();
+        SetTimerText();
     }
 
     private void SetTimerText()

@@ -8,9 +8,9 @@ public class MenuInicial : MonoBehaviour
 
     public void Jugar() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
-    //public void Controles() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
+    public void Estadisticas() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 6);
 
-    //public void Volver() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 4);
+    public void PlayEsatadisticas() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 5);
 
     //public void Game() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
 
